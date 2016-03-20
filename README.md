@@ -10,3 +10,26 @@ ELK日志收集（UDP+LVS）集群的部署教程
 
 最终的效果图如下：
 ![](http://renhua91.github.io/images/tongji.png)
+
+客户端接入方法：打开应用的**log4j.properties**文件，加入下面的配置：
+```java
+log4j.rootLogger=ERROR,fileout,gelf
+log4j.appender.gelf=biz.paluch.logging.gelf.log4j.GelfLogAppender
+log4j.appender.gelf.Threshold=ERROR
+log4j.appender.gelf.Host=udp:日志收集服务器ip
+log4j.appender.gelf.Port=12201
+log4j.appender.gelf.Version=1.0
+log4j.appender.gelf.Facility=您的应用名#您的负责人名（拼音，将用于邮件通知，多人用英文逗号隔开）
+log4j.appender.gelf.TimestampPattern=yyyy-MM-dd HH:mm:ss,SSSS
+log4j.appender.gelf.MaximumMessageSize=8192
+log4j.appender.gelf.extractStackTrace=true
+```
+
+依赖包 **logstash-gelf-1.6.0.jar**、**json-simple-1.1.1.jar** 可以从**客户端所需jar包**文件夹中下载，也可以从maven仓库中下载
+```maven
+<dependency>
+	<groupId>biz.paluch.logging</groupId>
+	<artifactId>logstash-gelf</artifactId>
+	<version>1.6.0</version>
+</dependency>
+```
