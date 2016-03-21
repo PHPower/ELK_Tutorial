@@ -11,7 +11,9 @@ ELK日志收集（UDP+LVS）集群的部署教程
 最终的效果图如下：
 ![](http://renhua91.github.io/images/tongji.png)
 
-客户端接入方法：打开应用的**log4j.properties**文件，加入下面的配置：
+ELK（lvs + keepalive + udp）的集群搭建方法请参考目录中各个文件夹中的**安装说明.md**
+
+客户端应用接入步骤：打开应用的**log4j.properties**文件，加入下面的配置：
 ```java
 log4j.rootLogger=ERROR,fileout,gelf
 log4j.appender.gelf=biz.paluch.logging.gelf.log4j.GelfLogAppender
