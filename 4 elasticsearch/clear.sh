@@ -2,7 +2,7 @@
 #!/bin/sh  
       
 #  
-#always keep nearly seven days logstash indics in cluster.    
+#elasticsearch的清理+优化倒排索引脚本    
 #  
 #  
       
